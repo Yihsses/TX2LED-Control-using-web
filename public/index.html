@@ -1,0 +1,49 @@
+<h1>Nodejs</h1>
+<hr></hr>
+<h2>LED Control Panel</h2>
+
+<form action="/shine" method="get" name="form1" id="form1" target="ok">
+<input type="checkbox" id="LED1" name="LED1" value="396">
+<label id="lab1">LED1_OFF</label>
+<input type="checkbox" id="LED2" name="LED2" value="397">
+<label id="lab2">LED2_OFF</label><br><br>
+<input type="checkbox" id="LED3" name="LED3" value="427">
+<label id="lab3">LED3_OFF</label>
+<input type="checkbox" id="LED4" name="LED4" value="398">
+<label id="lab4">LED4_OFF</label><br><br>
+<input type="submit" value="Submit" onclick = "controlled();" >
+<input type="radio" id="on" name="on_off" value="on"/>
+<label for="on">ON</label>
+<input type="radio" id="off" name="on_off" value="off" checked/>
+<label for="off">OFF</label>
+</form>
+
+
+<hr></hr>
+<h2>LED Switch Frequency</h2>
+
+<form action="/switch" method="get" name="form2" id="form2" target="ok">
+    <input type="number" id="switch_number" name="switch_number"><br><br>
+    <input type="submit" value="Mod_shine" onclick = "modeshine();" ><br><br>
+    <label id="lab5"></label>
+</form>
+
+<iframe id = "ok" name = "ok" style="display: none;"></iframe>
+<script>
+    function controlled(){
+        var judge = document.getElementById("on").checked;
+        for(var i = 1 ; i < 5 ;  i ++){
+            var check_ledbox = document.getElementById("LED" + i.toString()).checked ; 
+            if(judge && check_ledbox){
+                document.getElementById('lab' + i.toString()).innerHTML = 'LED1_ON';
+            }else{
+                document.getElementById('lab' + i.toString()).innerHTML = 'LED1_OFF';
+            }
+        }
+        document.getElementById('form1').submit();
+    }
+    function modeshine(){
+        document.getElementById('lab5').innerHTML = 'Mode_Shine_Time:' + document.getElementById("switch_number").value.toString();
+        document.getElementById('form2').submit();
+    }
+</script>
